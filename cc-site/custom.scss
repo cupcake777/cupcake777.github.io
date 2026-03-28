@@ -1,0 +1,139 @@
+/* ========================================
+   cc's custom styles — mint + clean white
+   ======================================== */
+
+/* ---- logo / site title ---- */
+.page-title {
+  font-family: var(--codeFont);
+  font-size: 1.1rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+}
+
+/* ---- nav links ---- */
+.navbar a {
+  font-size: 0.85rem;
+  color: var(--darkgray);
+  transition: color 0.2s;
+}
+.navbar a:hover {
+  color: var(--secondary);
+}
+
+/* ---- article headings ---- */
+h1, h2, h3 {
+  font-weight: 500;
+}
+
+h1 { border-bottom: 1.5px solid var(--highlight); padding-bottom: 0.3rem; }
+
+/* ---- links ---- */
+a {
+  color: var(--secondary);
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+  text-decoration-color: var(--secondary);
+}
+
+/* ---- tags ---- */
+.tag-link, a[href^="/tags/"] {
+  background: rgba(45, 189, 143, 0.08);
+  border: 0.5px solid rgba(45, 189, 143, 0.3);
+  color: var(--tertiary) !important;
+  padding: 2px 10px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-family: var(--codeFont);
+  text-decoration: none !important;
+}
+
+/* ---- callout / blockquote ---- */
+blockquote {
+  border-left: 3px solid var(--secondary);
+  background: var(--highlight);
+  padding: 0.75rem 1rem;
+  border-radius: 0 6px 6px 0;
+  color: var(--darkgray);
+}
+
+/* ---- code blocks ---- */
+pre {
+  border: 0.5px solid var(--lightgray);
+  border-radius: 8px;
+}
+
+code {
+  font-size: 0.85em;
+}
+
+/* ---- table of contents ---- */
+#toc-content a {
+  color: var(--darkgray);
+  font-size: 0.85rem;
+}
+#toc-content a:hover {
+  color: var(--secondary);
+}
+
+/* ---- explorer / sidebar ---- */
+.folder-title {
+  font-size: 0.8rem;
+  letter-spacing: 0.08em;
+  color: var(--secondary);
+  text-transform: uppercase;
+}
+
+/* ---- card grid (for index page) ---- */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+  margin: 1.5rem 0;
+}
+
+.card {
+  background: var(--light);
+  border: 0.5px solid var(--lightgray);
+  border-radius: 10px;
+  padding: 1rem 1.25rem;
+  transition: border-color 0.2s;
+}
+
+.card:hover {
+  border-color: var(--secondary);
+}
+
+.card-badge {
+  display: inline-block;
+  background: rgba(45, 189, 143, 0.08);
+  color: var(--tertiary);
+  font-size: 0.7rem;
+  padding: 2px 8px;
+  border-radius: 12px;
+  font-family: var(--codeFont);
+  margin-bottom: 6px;
+}
+
+/* ---- footer ---- */
+footer {
+  font-size: 0.8rem;
+  color: var(--gray);
+}
+
+/* ---- hero section on index ---- */
+.hero-eyebrow {
+  font-family: var(--codeFont);
+  font-size: 0.78rem;
+  color: var(--secondary);
+  letter-spacing: 0.08em;
+  margin-bottom: 0.5rem;
+}
+
+.hero-tagline {
+  font-family: var(--codeFont);
+  font-size: 0.82rem;
+  color: var(--secondary);
+  margin-top: 0.75rem;
+}
