@@ -9,30 +9,27 @@ cupcake (cc) 的个人主页 + 学习笔记站
 ## 本地开发
 
 ```bash
-# 1. fork https://github.com/jackyzha0/quartz
-# 然后把这些文件复制进去
-
-# 2. 安装依赖
+# 1. 安装依赖
 npm install
 
-# 3. 本地预览
-npx quartz build --serve
+# 2. 本地预览
+node ./quartz/bootstrap-cli.mjs build --serve --directory cc-site/content
 # 打开 http://localhost:8080
 ```
 
 ## 文件结构
 
 ```
-content/
+cc-site/content/
   index.md          # 首页
   about.md          # 关于我
   notes/
     index.md        # 笔记目录
     *.md            # 每篇笔记
-quartz.config.ts    # 网站配置（颜色、标题等）
-custom.scss         # 自定义样式（放到 quartz/styles/custom.scss）
-.github/workflows/
-  deploy.yml        # 自动部署到 GitHub Pages
+quartz.config.ts    # 根目录 Quartz 配置
+quartz.layout.ts    # 根目录页面布局
+quartz/styles/custom.scss
+.github/workflows/deploy.yml
 ```
 
 ## 如何添加新笔记
@@ -51,8 +48,8 @@ tags:
 正文内容...
 ```
 
-push 到 main 分支后自动部署 ✨
+push 到默认部署分支后会通过 GitHub Actions 自动部署到 GitHub Pages。
 
 ## 自定义样式
 
-`custom.scss` 复制到 `quartz/styles/custom.scss`，修改颜色在 `quartz.config.ts` 里改 `secondary` 的值。
+样式直接改 `quartz/styles/custom.scss`，颜色在根目录 `quartz.config.ts` 里调整。
