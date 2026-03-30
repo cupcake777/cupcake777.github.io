@@ -20,16 +20,28 @@ export const defaultContentPageLayout: PageLayout = {
   ],
   left: [
     Component.PageTitle(),
-    Component.Search(),
-    Component.Darkmode(),
     Component.Explorer({
+      title: "站点导航",
       folderDefaultState: "open",
       folderClickBehavior: "collapse",
     }),
+    Component.DesktopOnly(Component.Search()),
+    Component.DesktopOnly(Component.Darkmode()),
   ],
   right: [
     Component.TableOfContents(),
-    Component.DesktopOnly(Component.RecentNotes({ limit: 5 })),
+    Component.DesktopOnly(
+      Component.RecentNotes({
+        title: "最近笔记",
+        limit: 4,
+        linkToMore: "notes",
+        filter: (file) =>
+          !!file.slug &&
+          file.slug.startsWith("notes/") &&
+          !file.slug.endsWith("/index") &&
+          !file.slug.includes("tags/"),
+      }),
+    ),
   ],
 }
 
@@ -37,12 +49,27 @@ export const defaultListPageLayout: PageLayout = {
   beforeBody: [Component.Breadcrumbs(), Component.ArticleTitle(), Component.ContentMeta()],
   left: [
     Component.PageTitle(),
-    Component.Search(),
-    Component.Darkmode(),
     Component.Explorer({
+      title: "站点导航",
       folderDefaultState: "open",
       folderClickBehavior: "collapse",
     }),
+    Component.DesktopOnly(Component.Search()),
+    Component.DesktopOnly(Component.Darkmode()),
   ],
-  right: [Component.DesktopOnly(Component.RecentNotes({ limit: 5 }))],
+  right: [
+    Component.TableOfContents(),
+    Component.DesktopOnly(
+      Component.RecentNotes({
+        title: "最近笔记",
+        limit: 4,
+        linkToMore: "notes",
+        filter: (file) =>
+          !!file.slug &&
+          file.slug.startsWith("notes/") &&
+          !file.slug.endsWith("/index") &&
+          !file.slug.includes("tags/"),
+      }),
+    ),
+  ],
 }
