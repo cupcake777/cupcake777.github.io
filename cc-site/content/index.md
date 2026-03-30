@@ -57,8 +57,6 @@ HuggingFace Space
 ## recent notes
 
 - [[notes/container-docker-singularity|Container 踩坑：Docker vs Singularity]]
-- [[notes/rnaseq-from-scratch|从零在服务器上跑 RNA-seq]]
-- [[notes/claude-code-phd|直博第一年，我是怎么开始用 Claude Code 的]]
 
 → [[notes/|查看全部笔记]]
 
