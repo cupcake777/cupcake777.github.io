@@ -18,7 +18,7 @@ function LoadingScreen() {
       <Surface tint style={{ padding: 28 }}>
         <div style={{ display: "grid", gap: 10, textAlign: "center" }}>
           <SectionEyebrow>// loading</SectionEyebrow>
-          <SectionTitle style={{ fontSize: 24 }}>正在检查当前设备会话</SectionTitle>
+          <SectionTitle style={{ fontSize: 24 }}>检查设备会话</SectionTitle>
         </div>
       </Surface>
     </AppFrame>

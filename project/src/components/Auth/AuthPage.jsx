@@ -74,7 +74,7 @@ export function AuthPage({ onLogin, onRegister, loading, error, onBack, defaultM
                 transition={{ delay: 0.15 }}
               >
                 <PageTitle style={{ fontSize: "clamp(2rem, 4vw, 3.2rem)" }}>
-                  第一次先注册，之后回来默认直接进入工作台。
+                  注册一次，之后自动进入。
                 </PageTitle>
               </motion.div>
               <motion.div
@@ -83,7 +83,7 @@ export function AuthPage({ onLogin, onRegister, loading, error, onBack, defaultM
                 transition={{ delay: 0.2 }}
               >
                 <BodyText style={{ fontSize: 18 }}>
-                  登录页不再是首页的唯一入口。它只是账户入口层，真正的主界面会在登录后切到更克制的薄荷绿工作台。
+                  设备会话持久化，无需每次登录。工作台采用克制的薄荷绿配色。
                 </BodyText>
               </motion.div>
               <motion.div
@@ -92,9 +92,9 @@ export function AuthPage({ onLogin, onRegister, loading, error, onBack, defaultM
                 transition={{ delay: 0.25 }}
                 style={{ display: "flex", gap: 10, flexWrap: "wrap" }}
               >
-                <Badge>注册优先</Badge>
-                <Badge>设备会话自动进入</Badge>
-                <Badge tone="muted">退出后再手动登录</Badge>
+                <Badge>Register first</Badge>
+                <Badge>Auto session</Badge>
+                <Badge tone="muted">Manual login after logout</Badge>
               </motion.div>
               <motion.div
                 initial={{ opacity: 0 }}
@@ -103,9 +103,9 @@ export function AuthPage({ onLogin, onRegister, loading, error, onBack, defaultM
               >
                 <Surface style={{ padding: 20 }}>
                   <div style={{ display: "grid", gap: 10 }}>
-                    <SectionTitle style={{ fontSize: 20 }}>进入后你会看到什么</SectionTitle>
-                    <BodyText>顶栏是工具菜单，底部是一级导航，默认直接落到"今日"。</BodyText>
-                    <BodyText>核心任务只有两件：先记一条，再顺手回看本周。</BodyText>
+                    <SectionTitle style={{ fontSize: 20 }}>After login</SectionTitle>
+                    <BodyText>默认落在"今日"页面，顶栏工具菜单，底部一级导航。</BodyText>
+                    <BodyText>记录当下，回看本周。</BodyText>
                   </div>
                 </Surface>
               </motion.div>
@@ -157,7 +157,7 @@ export function AuthPage({ onLogin, onRegister, loading, error, onBack, defaultM
                   transition={{ delay: 0.25 }}
                 >
                   <SectionTitle>
-                    {mode === "register" ? "创建你的记录空间" : "登录到当前设备"}
+                    {mode === "register" ? "Create your space" : "Login to device"}
                   </SectionTitle>
                 </motion.div>
               </div>

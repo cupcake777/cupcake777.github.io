@@ -11,7 +11,7 @@ export function LoginForm({ onLogin, onSwitchToRegister, loading, error }) {
     <form onSubmit={handleSubmit} style={{ display: "grid", gap: 16 }}>
       <Field
         label="邮箱"
-        hint="退出登录或会话失效后，才需要手动登录。平时会默认使用当前设备上的持久会话。"
+        hint="设备会话失效时需要重新登录。"
       >
         <TextInput name="email" type="email" placeholder="name@example.com" required />
       </Field>

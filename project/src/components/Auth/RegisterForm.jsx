@@ -29,7 +29,7 @@ export function RegisterForm({ onRegister, onSwitchToLogin, loading, error }) {
     <form onSubmit={handleSubmit} style={{ display: "grid", gap: 16 }}>
       <Field
         label="注册邮箱"
-        hint="第一次进入从这里开始。注册完成后会直接建立设备会话，之后回来默认自动进入工作台。"
+        hint="注册后自动建立设备会话。"
       >
         <TextInput name="email" type="email" placeholder="name@example.com" required />
       </Field>
