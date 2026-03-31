@@ -1,5 +1,7 @@
-import { useState, useEffect } from "react"
-import { Settings, X, Key, Info } from "lucide-react"
+/* eslint-disable react-refresh/only-export-components */
+import { useState } from "react"
+import { Info, Key, Settings, X } from "lucide-react"
+import { uiTokens } from "./ui/tokens"
 
 const AI_PROVIDERS = [
   { id: "anthropic", name: "Anthropic (Claude)", placeholder: "sk-ant-..." },
@@ -8,22 +10,15 @@ const AI_PROVIDERS = [
 
 export function useAISettings() {
   const [isOpen, setIsOpen] = useState(false)
-  const [provider, setProvider] = useState("anthropic")
-  const [apiKey, setApiKey] = useState("")
+  const [provider, setProvider] = useState(() => localStorage.getItem("cat-journal-ai-provider") || "anthropic")
+  const [apiKey, setApiKey] = useState(() => localStorage.getItem("cat-journal-ai-key") || "")
   const [saved, setSaved] = useState(false)
-
-  useEffect(() => {
-    const savedProvider = localStorage.getItem("cat-journal-ai-provider")
-    const savedKey = localStorage.getItem("cat-journal-ai-key")
-    if (savedProvider) setProvider(savedProvider)
-    if (savedKey) setApiKey(savedKey)
-  }, [])
 
   const handleSave = () => {
     localStorage.setItem("cat-journal-ai-provider", provider)
     localStorage.setItem("cat-journal-ai-key", apiKey)
     setSaved(true)
-    setTimeout(() => setSaved(false), 2000)
+    setTimeout(() => setSaved(false), 1800)
     setIsOpen(false)
   }
 
@@ -52,19 +47,19 @@ export function AISettingsButton({ onClick }) {
     <button
       onClick={onClick}
       style={{
-        background: "transparent",
-        border: "none",
+        minHeight: 42,
+        minWidth: 42,
+        borderRadius: 14,
+        border: `1px solid ${uiTokens.color.accentBorder}`,
+        background: uiTokens.color.surface,
         cursor: "pointer",
-        padding: 8,
-        borderRadius: 10,
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        transition: "all .2s",
+        display: "grid",
+        placeItems: "center",
+        color: uiTokens.color.textStrong,
       }}
-      title="AI设置"
+      title="AI 设置"
     >
-      <Settings size={22} color="#9e8472" />
+      <Settings size={18} />
     </button>
   )
 }
@@ -79,192 +74,129 @@ export function AISettingsModal({ isOpen, onClose, settings }) {
       onClick={onClose}
       style={{
         position: "fixed",
-        top: 0,
-        left: 0,
-        right: 0,
-        bottom: 0,
-        background: "rgba(0,0,0,0.4)",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        zIndex: 1000,
+        inset: 0,
+        background: "rgba(18, 35, 27, 0.24)",
+        display: "grid",
+        placeItems: "center",
+        zIndex: 50,
         padding: 20,
       }}
     >
       <div
-        onClick={(e) => e.stopPropagation()}
+        onClick={(event) => event.stopPropagation()}
         style={{
-          background: "rgba(255,255,255,0.95)",
-          backdropFilter: "blur(20px)",
-          borderRadius: 22,
-          border: "1px solid rgba(196,168,130,0.22)",
-          boxShadow: "0 10px 40px rgba(160,120,80,0.15)",
-          padding: "28px 24px",
-          maxWidth: 420,
-          width: "100%",
-          maxHeight: "90vh",
-          overflow: "auto",
+          width: "min(460px, 100%)",
+          borderRadius: 24,
+          border: `1px solid ${uiTokens.color.surfaceBorder}`,
+          background: uiTokens.color.surface,
+          boxShadow: uiTokens.shadow.card,
+          padding: 24,
+          display: "grid",
+          gap: 18,
         }}
       >
-        <style
-          dangerouslySetInnerHTML={{
-            __html: `
-          @keyframes popIn{0%{opacity:0;transform:scale(.95)}100%{opacity:1;transform:scale(1)}        `,
-          }}
-        />
-
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            marginBottom: 20,
-          }}
-        >
-          <h3
-            style={{
-              fontFamily: "'Noto Serif SC', serif",
-              fontSize: 18,
-              color: "#5c4033",
-              margin: 0,
-              fontWeight: 700,
-              display: "flex",
-              alignItems: "center",
-              gap: 8,
-            }}
-          >
-            <Key size={20} />
-            AI 设置
-          </h3>
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12 }}>
+          <div style={{ display: "grid", gap: 8 }}>
+            <span style={{ color: uiTokens.color.accent, fontFamily: uiTokens.font.mono, fontSize: 12 }}>
+              // ai settings
+            </span>
+            <strong style={{ fontSize: 24, color: uiTokens.color.textStrong, fontFamily: uiTokens.font.heading }}>
+              配置你的 AI 提供商
+            </strong>
+          </div>
           <button
             onClick={onClose}
-            style={{
-              background: "transparent",
-              border: "none",
-              cursor: "pointer",
-              padding: 4,
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
+            style={{ background: "transparent", border: "none", cursor: "pointer", color: uiTokens.color.textMuted }}
           >
-            <X size={20} color="#9e8472" />
+            <X size={18} />
           </button>
         </div>
 
         <div
           style={{
-            background: "#fff9e6",
-            border: "1px solid #ffd97d",
-            borderRadius: 12,
-            padding: "12px 14px",
-            marginBottom: 20,
             display: "flex",
             gap: 10,
-            alignItems: "flex-start",
+            padding: "12px 14px",
+            borderRadius: 16,
+            border: `1px solid ${uiTokens.color.accentBorder}`,
+            background: uiTokens.color.accentSoft,
+            color: uiTokens.color.textMuted,
+            fontSize: 14,
+            lineHeight: 1.6,
           }}
         >
-          <Info size={18} color="#a67c00" style={{ flexShrink: 0, marginTop: 2 }} />
-          <p
-            style={{
-              fontSize: 13,
-              color: "#8a6d00",
-              fontFamily: "sans-serif",
-              lineHeight: 1.6,
-              margin: 0,
-            }}
-          >
-            API Key 仅存储在你的浏览器本地，不会上传到服务器。请妥善保管你的密钥。
-          </p>
+          <Info size={18} style={{ flexShrink: 0, marginTop: 2 }} />
+          <span>API Key 仅保存在当前浏览器本地，用于生成摘要和 AI 辅助回复。</span>
         </div>
 
-        <div style={{ marginBottom: 16 }}>
-          <label
-            style={{
-              fontSize: 12,
-              color: "#9e8472",
-              fontFamily: "sans-serif",
-              marginBottom: 8,
-              display: "block",
-              fontWeight: 600,
-            }}
-          >
-            AI 提供商
+        <div style={{ display: "grid", gap: 10 }}>
+          <label style={{ display: "grid", gap: 8 }}>
+            <span style={{ color: uiTokens.color.textStrong, fontWeight: 600 }}>AI 提供商</span>
+            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8 }}>
+              {AI_PROVIDERS.map((item) => {
+                const active = provider === item.id
+                return (
+                  <button
+                    key={item.id}
+                    onClick={() => setProvider(item.id)}
+                    style={{
+                      minHeight: 46,
+                      borderRadius: 16,
+                      border: `1px solid ${active ? uiTokens.color.accentBorder : uiTokens.color.surfaceBorder}`,
+                      background: active ? uiTokens.color.accentSoft : uiTokens.color.surface,
+                      cursor: "pointer",
+                      color: uiTokens.color.textStrong,
+                    }}
+                  >
+                    {item.name}
+                  </button>
+                )
+              })}
+            </div>
           </label>
-          <div style={{ display: "flex", gap: 8 }}>
-            {AI_PROVIDERS.map((p) => (
-              <button
-                key={p.id}
-                onClick={() => setProvider(p.id)}
+
+          <label style={{ display: "grid", gap: 8 }}>
+            <span style={{ color: uiTokens.color.textStrong, fontWeight: 600 }}>API Key</span>
+            <div style={{ position: "relative" }}>
+              <input
+                type="password"
+                value={apiKey}
+                onChange={(event) => setApiKey(event.target.value)}
+                placeholder={AI_PROVIDERS.find((item) => item.id === provider)?.placeholder}
                 style={{
-                  flex: 1,
-                  padding: "12px 8px",
-                  borderRadius: 12,
-                  border: `2px solid ${provider === p.id ? "#c4a882" : "#e8d5c0"}`,
-                  background: provider === p.id ? "#f5ede4" : "#fdf8f4",
-                  color: "#5c4033",
-                  fontSize: 13,
-                  fontWeight: provider === p.id ? 600 : 400,
-                  cursor: "pointer",
-                  fontFamily: "sans-serif",
-                  transition: "all .2s",
+                  width: "100%",
+                  minHeight: 48,
+                  borderRadius: 16,
+                  border: `1px solid ${uiTokens.color.surfaceBorder}`,
+                  padding: "12px 14px 12px 42px",
+                  fontFamily: uiTokens.font.mono,
                 }}
-              >
-                {p.name}
-              </button>
-            ))}
-          </div>
-        </div>
-
-        <div style={{ marginBottom: 24 }}>
-          <label
-            style={{
-              fontSize: 12,
-              color: "#9e8472",
-              fontFamily: "sans-serif",
-              marginBottom: 8,
-              display: "block",
-              fontWeight: 600,
-            }}
-          >
-            API Key
+              />
+              <Key
+                size={16}
+                style={{
+                  position: "absolute",
+                  left: 14,
+                  top: "50%",
+                  transform: "translateY(-50%)",
+                  color: uiTokens.color.textMuted,
+                }}
+              />
+            </div>
           </label>
-          <input
-            type="password"
-            value={apiKey}
-            onChange={(e) => setApiKey(e.target.value)}
-            placeholder={AI_PROVIDERS.find((p) => p.id === provider)?.placeholder}
-            style={{
-              width: "100%",
-              borderRadius: 12,
-              border: "2px solid #e8d5c0",
-              padding: "12px 14px",
-              fontSize: 14,
-              fontFamily: "monospace",
-              outline: "none",
-              background: "#fdf8f4",
-              color: "#5c4033",
-              boxSizing: "border-box",
-            }}
-            onFocus={(e) => (e.target.style.borderColor = "#c4a882")}
-            onBlur={(e) => (e.target.style.borderColor = "#e8d5c0")}
-          />
         </div>
 
-        <div style={{ display: "flex", gap: 10 }}>
+        <div style={{ display: "flex", justifyContent: "space-between", gap: 10, flexWrap: "wrap" }}>
           <button
             onClick={handleClear}
             style={{
-              flex: 1,
-              padding: "12px",
-              borderRadius: 12,
-              border: "2px solid #e8d5c0",
+              minHeight: 44,
+              padding: "0 16px",
+              borderRadius: 14,
+              border: `1px solid ${uiTokens.color.surfaceBorder}`,
               background: "transparent",
-              color: "#9e8472",
-              fontSize: 14,
               cursor: "pointer",
-              fontFamily: "sans-serif",
-              transition: "all .2s",
+              color: uiTokens.color.textMuted,
             }}
           >
             清除
@@ -273,20 +205,16 @@ export function AISettingsModal({ isOpen, onClose, settings }) {
             onClick={handleSave}
             disabled={!apiKey.trim()}
             style={{
-              flex: 2,
-              padding: "12px",
-              borderRadius: 12,
+              minHeight: 44,
+              padding: "0 16px",
+              borderRadius: 14,
               border: "none",
-              background: apiKey.trim() ? "linear-gradient(135deg,#c4a882,#e8b89a)" : "#e8d5c0",
-              color: apiKey.trim() ? "white" : "#b0a090",
-              fontSize: 14,
-              fontWeight: 600,
-              fontFamily: "'Noto Serif SC', serif",
+              background: apiKey.trim() ? uiTokens.color.accent : uiTokens.color.surfaceBorder,
+              color: apiKey.trim() ? "#fff" : uiTokens.color.textMuted,
               cursor: apiKey.trim() ? "pointer" : "not-allowed",
-              transition: "all .2s",
             }}
           >
-            {saved ? "✓ 已保存" : "保存设置"}
+            {saved ? "已保存" : "保存设置"}
           </button>
         </div>
       </div>

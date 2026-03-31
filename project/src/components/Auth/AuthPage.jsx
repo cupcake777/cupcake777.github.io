@@ -1,144 +1,132 @@
 import { useState } from "react"
+import { AUTH_FLOW } from "../../config/site"
+import {
+  AppFrame,
+  Badge,
+  BodyText,
+  Container,
+  PageTitle,
+  SectionEyebrow,
+  SectionTitle,
+  Surface,
+} from "../ui/primitives"
+import { uiTokens } from "../ui/tokens"
 import { LoginForm } from "./LoginForm"
 import { RegisterForm } from "./RegisterForm"
 
-export function AuthPage({ onLogin, onRegister, loading, error }) {
-  const [mode, setMode] = useState("login")
+export function AuthPage({ onLogin, onRegister, loading, error, onBack, defaultMode }) {
+  const [mode, setMode] = useState(defaultMode || AUTH_FLOW.defaultMode)
 
   return (
-    <div
-      style={{
-        minHeight: "100vh",
-        background: "linear-gradient(160deg,#fdf4ec,#f5e6d8,#ede0d4)",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        padding: "24px 20px",
-      }}
-    >
-      <style
-        dangerouslySetInnerHTML={{
-          __html: `
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700&display=swap');
-        @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
-        @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}      `,
-        }}
-      />
-      <div
+    <AppFrame>
+      <Container
         style={{
-          width: "100%",
-          maxWidth: 460,
-          animation: "fadeUp .5s ease-out",
+          minHeight: "100dvh",
+          display: "grid",
+          alignItems: "center",
+          gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+          gap: 24,
+          paddingBlock: 32,
         }}
       >
-        <div style={{ textAlign: "center", marginBottom: 32 }}>
-          <div
-            style={{ fontSize: 72, marginBottom: 12, animation: "float 3s ease-in-out infinite" }}
-          >
-            🐱
+        <Surface tint style={{ padding: 28 }}>
+          <div style={{ display: "grid", gap: 20 }}>
+            <SectionEyebrow>// auth</SectionEyebrow>
+            <PageTitle style={{ fontSize: "clamp(2rem, 4vw, 3.2rem)" }}>
+              第一次先注册，之后回来默认直接进入工作台。
+            </PageTitle>
+            <BodyText style={{ fontSize: 18 }}>
+              登录页不再是首页的唯一入口。它只是账户入口层，真正的主界面会在登录后切到更克制的薄荷绿工作台。
+            </BodyText>
+            <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
+              <Badge>注册优先</Badge>
+              <Badge>设备会话自动进入</Badge>
+              <Badge tone="muted">退出后再手动登录</Badge>
+            </div>
+            <Surface style={{ padding: 20 }}>
+              <div style={{ display: "grid", gap: 10 }}>
+                <SectionTitle style={{ fontSize: 20 }}>进入后你会看到什么</SectionTitle>
+                <BodyText>顶栏是工具菜单，底部是一级导航，默认直接落到“今日”。</BodyText>
+                <BodyText>核心任务只有两件：先记一条，再顺手回看本周。</BodyText>
+              </div>
+            </Surface>
+            {onBack ? (
+              <button
+                onClick={onBack}
+                style={{
+                  justifySelf: "start",
+                  background: "transparent",
+                  border: "none",
+                  color: uiTokens.color.accentStrong,
+                  fontSize: 14,
+                  cursor: "pointer",
+                  padding: 0,
+                }}
+              >
+                返回公开首页
+              </button>
+            ) : null}
           </div>
-          <h1
-            style={{
-              fontFamily: "'Noto Serif SC', serif",
-              fontSize: 24,
-              color: "#5c4033",
-              margin: "0 0 8px",
-              fontWeight: 700,
-            }}
-          >
-            猫猫饲养日志
-          </h1>
-          <p style={{ color: "#9e8472", fontSize: 14, fontFamily: "sans-serif", margin: 0 }}>
-            记录每一天，陪伴每一刻
-          </p>
-        </div>
+        </Surface>
 
-        <div
-          style={{
-            background: "rgba(255,255,255,0.88)",
-            backdropFilter: "blur(18px)",
-            borderRadius: 22,
-            border: "1px solid rgba(196,168,130,0.22)",
-            boxShadow: "0 6px 28px rgba(160,120,80,0.10)",
-            padding: "32px 28px",
-          }}
-        >
-          <div
-            style={{
-              display: "flex",
-              gap: 8,
-              marginBottom: 24,
-              background: "#f5ede4",
-              borderRadius: 12,
-              padding: 4,
-            }}
-          >
-            <button
-              onClick={() => setMode("login")}
+        <Surface style={{ padding: 28 }}>
+          <div style={{ display: "grid", gap: 20 }}>
+            <div style={{ display: "grid", gap: 8 }}>
+              <SectionEyebrow>{mode === "register" ? "// register" : "// login"}</SectionEyebrow>
+              <SectionTitle>{mode === "register" ? "创建你的记录空间" : "登录到当前设备"}</SectionTitle>
+            </div>
+
+            <div
               style={{
-                flex: 1,
-                padding: "10px",
-                borderRadius: 10,
-                border: "none",
-                background: mode === "login" ? "white" : "transparent",
-                color: mode === "login" ? "#5c4033" : "#9e8472",
-                fontSize: 14,
-                fontWeight: mode === "login" ? 600 : 400,
-                cursor: "pointer",
-                fontFamily: "sans-serif",
-                transition: "all .2s",
-                boxShadow: mode === "login" ? "0 2px 8px rgba(160,120,80,0.15)" : "none",
+                display: "grid",
+                gridTemplateColumns: "1fr 1fr",
+                gap: 8,
+                padding: 6,
+                borderRadius: 18,
+                background: uiTokens.color.accentSoft,
+                border: `1px solid ${uiTokens.color.accentBorder}`,
               }}
             >
-              登录
-            </button>
-            <button
-              onClick={() => setMode("register")}
-              style={{
-                flex: 1,
-                padding: "10px",
-                borderRadius: 10,
-                border: "none",
-                background: mode === "register" ? "white" : "transparent",
-                color: mode === "register" ? "#5c4033" : "#9e8472",
-                fontSize: 14,
-                fontWeight: mode === "register" ? 600 : 400,
-                cursor: "pointer",
-                fontFamily: "sans-serif",
-                transition: "all .2s",
-                boxShadow: mode === "register" ? "0 2px 8px rgba(160,120,80,0.15)" : "none",
-              }}
-            >
-              注册
-            </button>
+              {[
+                { key: "register", label: "注册" },
+                { key: "login", label: "登录" },
+              ].map((item) => (
+                <button
+                  key={item.key}
+                  onClick={() => setMode(item.key)}
+                  style={{
+                    minHeight: 42,
+                    borderRadius: 14,
+                    border: "none",
+                    cursor: "pointer",
+                    background: mode === item.key ? uiTokens.color.surface : "transparent",
+                    color: mode === item.key ? uiTokens.color.textStrong : uiTokens.color.textMuted,
+                    fontWeight: mode === item.key ? 700 : 500,
+                  }}
+                >
+                  {item.label}
+                </button>
+              ))}
+            </div>
+
+            {mode === "register" ? (
+              <RegisterForm
+                onRegister={onRegister}
+                onSwitchToLogin={() => setMode("login")}
+                loading={loading}
+                error={error}
+              />
+            ) : (
+              <LoginForm
+                onLogin={onLogin}
+                onSwitchToRegister={() => setMode("register")}
+                loading={loading}
+                error={error}
+              />
+            )}
           </div>
-
-          {mode === "login" ? (
-            <LoginForm
-              onLogin={onLogin}
-              onSwitchToRegister={() => setMode("register")}
-              loading={loading}
-              error={error}
-            />
-          ) : (
-            <RegisterForm
-              onRegister={onRegister}
-              onSwitchToLogin={() => setMode("login")}
-              loading={loading}
-              error={error}
-            />
-          )}
-        </div>
-
-        <div style={{ textAlign: "center", marginTop: 20 }}>
-          <p style={{ fontSize: 12, color: "#b0a090", fontFamily: "sans-serif", lineHeight: 1.7 }}>
-            数据安全存储于云端 🔒
-            <br />
-            仅供个人使用
-          </p>
-        </div>
-      </div>
-    </div>
+        </Surface>
+      </Container>
+    </AppFrame>
   )
 }
