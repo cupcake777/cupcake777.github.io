@@ -1,5 +1,7 @@
 import { BodyText, Metric, PrimaryButton, SectionEyebrow, SectionTitle, Surface, TextArea } from "../ui/primitives"
 import { uiTokens } from "../ui/tokens"
+import { MoodChart } from "../MoodChart"
+import { CatAvatar } from "../CatAvatar"
 
 export function InsightsPage({
   summary,
@@ -38,34 +40,40 @@ export function InsightsPage({
       >
         <Surface style={{ padding: 22 }}>
           <div style={{ display: "grid", gap: 16 }}>
-            <SectionEyebrow>// trend</SectionEyebrow>
-            <SectionTitle style={{ fontSize: 24 }}>最近状态分布</SectionTitle>
-            {records.length ? (
-              <div style={{ display: "grid", gap: 12 }}>
-                {records.slice(0, 8).map((record) => (
-                  <div
-                    key={record.id || record.ts}
-                    style={{
-                      display: "grid",
-                      gap: 8,
-                      paddingBottom: 12,
-                      borderBottom: `1px solid ${uiTokens.color.surfaceBorder}`,
-                    }}
-                  >
-                    <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 10 }}>
-                      <strong style={{ color: uiTokens.color.textStrong }}>
-                        {record.activity || "未命名记录"}
-                      </strong>
-                      <span style={{ color: record.mood?.color || uiTokens.color.accentStrong }}>
-                        {record.mood?.emoji || "•"}
-                      </span>
-                    </div>
-                    <BodyText>{record.nextPlan || "未填写下一步。"}</BodyText>
-                  </div>
-                ))}
+            <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
+              <CatAvatar mood={records[0]?.mood?.value || "calm"} size={80} />
+              <div style={{ display: "grid", gap: 6 }}>
+                <SectionEyebrow>// trend</SectionEyebrow>
+                <SectionTitle style={{ fontSize: 24 }}>最近状态分布</SectionTitle>
               </div>
+            </div>
+            {records.length ? (
+              <>
+                <MoodChart records={records} height={160} />
+                <div style={{ display: "grid", gap: 12, marginTop: 8 }}>
+                  {records.slice(0, 5).map((record) => (
+                    <div
+                      key={record.id || record.ts}
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: 10,
+                        paddingBottom: 10,
+                        borderBottom: `1px solid ${uiTokens.color.surfaceBorder}`,
+                      }}
+                    >
+                      <span style={{ fontSize: 20 }}>{record.mood?.emoji || "•"}</span>
+                      <div style={{ flex: 1 }}>
+                        <strong style={{ color: uiTokens.color.textStrong, fontSize: 14 }}>
+                          {record.activity || "未命名记录"}
+                        </strong>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </>
             ) : (
-              <BodyText>记录量还不足，先去“今日”留下几条内容。</BodyText>
+              <BodyText>记录量还不足，先去"今日"留下几条内容。</BodyText>
             )}
           </div>
         </Surface>

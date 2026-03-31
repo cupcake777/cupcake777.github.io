@@ -15,7 +15,13 @@ import {
 import { AISettingsModal, getAIConfig, useAISettings } from "../AISettings"
 import { PRIMARY_TABS, TOOL_MENU_ITEMS } from "../../config/site"
 import { db } from "../../lib/storage"
-import { normalizeDigests, normalizeProfile, normalizeRecord, normalizeResearch, toText } from "../../lib/normalize"
+import {
+  normalizeDigests,
+  normalizeProfile,
+  normalizeRecord,
+  normalizeResearch,
+  toText,
+} from "../../lib/normalize"
 import {
   buildAIContext,
   createDraftRecord,
@@ -31,6 +37,9 @@ import { TimelinePage } from "./TimelinePage"
 import { InsightsPage } from "./InsightsPage"
 import { AIPage } from "./AIPage"
 import { MyPage } from "./MyPage"
+import { CatAvatar } from "../CatAvatar"
+import { FloatingCat } from "../FloatingCat"
+import { motion } from "framer-motion"
 
 const TAB_ICONS = {
   today: SunMedium,
@@ -138,22 +147,38 @@ function ResearchPanel({ value, onChange, onSave, onClose, saving }) {
       }}
       onClick={onClose}
     >
-      <Surface style={{ width: "min(720px, 100%)", padding: 24 }} onClick={(event) => event.stopPropagation()}>
+      <Surface
+        style={{ width: "min(720px, 100%)", padding: 24 }}
+        onClick={(event) => event.stopPropagation()}
+      >
         <div style={{ display: "grid", gap: 18 }}>
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: 12 }}>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              gap: 12,
+            }}
+          >
             <div style={{ display: "grid", gap: 8 }}>
               <SectionEyebrow>// research</SectionEyebrow>
               <SectionTitle style={{ fontSize: 24 }}>研究模块已收进工具菜单</SectionTitle>
             </div>
             <button
               onClick={onClose}
-              style={{ background: "transparent", border: "none", cursor: "pointer", color: uiTokens.color.textMuted }}
+              style={{
+                background: "transparent",
+                border: "none",
+                cursor: "pointer",
+                color: uiTokens.color.textMuted,
+              }}
             >
               <X size={20} />
             </button>
           </div>
           <BodyText>
-            这部分不再和“今日记录”处在同一层导航。这里只保留必要的研究背景，供 AI 和你自己在回看时参考。
+            这部分不再和“今日记录”处在同一层导航。这里只保留必要的研究背景，供 AI
+            和你自己在回看时参考。
           </BodyText>
           <label style={{ display: "grid", gap: 8 }}>
             <span>研究主题</span>
@@ -489,14 +514,18 @@ export function WorkspaceShell({ user, onLogout }) {
 
   return (
     <div style={{ minHeight: "100dvh", background: uiTokens.color.base, paddingBottom: 92 }}>
-      <header
+      <motion.header
+        initial={{ y: -20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.3 }}
         style={{
           position: "sticky",
           top: 0,
           zIndex: 25,
-          backdropFilter: "blur(18px)",
-          background: "rgba(255, 253, 250, 0.92)",
+          backdropFilter: "blur(20px)",
+          background: "rgba(255, 253, 250, 0.85)",
           borderBottom: `1px solid ${uiTokens.color.surfaceBorder}`,
+          boxShadow: "inset 0 -1px 0 rgba(255,255,255,0.6)",
         }}
       >
         <Container style={{ paddingBlock: 14 }}>
@@ -511,14 +540,31 @@ export function WorkspaceShell({ user, onLogout }) {
                 position: "relative",
               }}
             >
-              <div style={{ display: "grid", gap: 4 }}>
-                <strong style={{ fontFamily: uiTokens.font.mono, fontSize: 14 }}>cat journal</strong>
-                <span style={{ color: uiTokens.color.textMuted, fontSize: 13 }}>
-                  {summary.hasToday ? `今天已记录 ${summary.todayRecords.length} 条` : "今天还没有记录"}
-                </span>
+              <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
+                <CatAvatar mood={records[0]?.mood?.value || "calm"} size={50} />
+                <div style={{ display: "grid", gap: 4 }}>
+                  <strong style={{ fontFamily: uiTokens.font.mono, fontSize: 14 }}>
+                    cat journal
+                  </strong>
+                  <span style={{ color: uiTokens.color.textMuted, fontSize: 13 }}>
+                    {summary.hasToday
+                      ? `今天已记录 ${summary.todayRecords.length} 条`
+                      : "今天还没有记录"}
+                  </span>
+                </div>
               </div>
-              <div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap", marginLeft: "auto" }}>
-                <button
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: 10,
+                  flexWrap: "wrap",
+                  marginLeft: "auto",
+                }}
+              >
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
                   onClick={() => setActiveTab("timeline")}
                   style={{
                     minHeight: 42,
@@ -535,8 +581,10 @@ export function WorkspaceShell({ user, onLogout }) {
                 >
                   <Search size={16} />
                   搜索记录
-                </button>
-                <button
+                </motion.button>
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
                   onClick={() => setActiveTab("today")}
                   style={{
                     minHeight: 42,
@@ -553,9 +601,11 @@ export function WorkspaceShell({ user, onLogout }) {
                 >
                   <Sparkles size={16} />
                   快速新增
-                </button>
+                </motion.button>
                 <div style={{ position: "relative" }}>
-                  <button
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
                     onClick={() => setMenuOpen((open) => !open)}
                     style={{
                       minHeight: 42,
@@ -568,20 +618,25 @@ export function WorkspaceShell({ user, onLogout }) {
                     }}
                   >
                     <Menu size={18} />
-                  </button>
-                  {menuOpen ? <ToolMenu onAction={handleMenuAction} onClose={() => setMenuOpen(false)} /> : null}
+                  </motion.button>
+                  {menuOpen ? (
+                    <ToolMenu onAction={handleMenuAction} onClose={() => setMenuOpen(false)} />
+                  ) : null}
                 </div>
               </div>
             </div>
           </Surface>
         </Container>
-      </header>
+      </motion.header>
 
       <main>
         <Container style={{ paddingTop: 24 }}>{renderActivePage()}</Container>
       </main>
 
-      <nav
+      <motion.nav
+        initial={{ y: 20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.3, delay: 0.1 }}
         style={{
           position: "fixed",
           left: 0,
@@ -590,7 +645,7 @@ export function WorkspaceShell({ user, onLogout }) {
           zIndex: 26,
           borderTop: `1px solid ${uiTokens.color.surfaceBorder}`,
           background: "rgba(255, 253, 250, 0.94)",
-          backdropFilter: "blur(18px)",
+          backdropFilter: "blur(20px)",
         }}
       >
         <Container
@@ -606,9 +661,15 @@ export function WorkspaceShell({ user, onLogout }) {
             const active = activeTab === item.key
 
             return (
-              <button
+              <motion.button
                 key={item.key}
                 onClick={() => setActiveTab(item.key)}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                animate={{
+                  scale: active ? 1.05 : 1,
+                }}
+                transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 style={{
                   minHeight: 54,
                   borderRadius: 18,
@@ -623,11 +684,11 @@ export function WorkspaceShell({ user, onLogout }) {
               >
                 <Icon size={18} />
                 <span style={{ fontSize: 12 }}>{item.label}</span>
-              </button>
+              </motion.button>
             )
           })}
         </Container>
-      </nav>
+      </motion.nav>
 
       {researchOpen ? (
         <ResearchPanel
@@ -644,6 +705,8 @@ export function WorkspaceShell({ user, onLogout }) {
         onClose={() => aiSettings.setIsOpen(false)}
         settings={aiSettings}
       />
+
+      <FloatingCat records={records} />
     </div>
   )
 }

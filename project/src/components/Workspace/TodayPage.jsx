@@ -12,6 +12,8 @@ import {
   TextInput,
 } from "../ui/primitives"
 import { uiTokens } from "../ui/tokens"
+import { CatAvatar } from "../CatAvatar"
+import { MoodChart } from "../MoodChart"
 
 export function TodayPage({
   profile,
@@ -39,12 +41,15 @@ export function TodayPage({
             flexWrap: "wrap",
           }}
         >
-          <div style={{ display: "grid", gap: 8, maxWidth: 640 }}>
-            <SectionEyebrow>// today</SectionEyebrow>
-            <SectionTitle>你好，{displayName}。</SectionTitle>
-            <BodyText>
-              先用一条记录标记你现在的状态。工作台默认只把“今天”和“本周”放在最前面。
-            </BodyText>
+          <div style={{ display: "flex", gap: 20, alignItems: "center" }}>
+            <CatAvatar mood={draft.mood?.value || summary.todayRecords[0]?.mood?.value || "calm"} size={100} />
+            <div style={{ display: "grid", gap: 8, maxWidth: 640 }}>
+              <SectionEyebrow>// today</SectionEyebrow>
+              <SectionTitle>你好，{displayName}。</SectionTitle>
+              <BodyText>
+                先用一条记录标记你现在的状态。工作台默认只把今天和本周放在最前面。
+              </BodyText>
+            </div>
           </div>
           <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
             <Badge>{summary.hasToday ? "今天已记录" : "今天还没有记录"}</Badge>
@@ -209,7 +214,8 @@ export function TodayPage({
             <div style={{ display: "grid", gap: 12 }}>
               <SectionEyebrow>// week</SectionEyebrow>
               <SectionTitle style={{ fontSize: 22 }}>本周回看</SectionTitle>
-              <BodyText>当前已经有 {summary.weeklyCount} 天留下记录。去洞察页看趋势、热力图和周/月摘要。</BodyText>
+              <BodyText>当前已经有 {summary.weeklyCount} 天留下记录。</BodyText>
+              <MoodChart records={records} height={140} />
               <button
                 onClick={onOpenInsights}
                 style={{
@@ -221,7 +227,7 @@ export function TodayPage({
                   padding: 0,
                 }}
               >
-                去洞察页
+                去洞察页看完整趋势
               </button>
             </div>
           </Surface>
