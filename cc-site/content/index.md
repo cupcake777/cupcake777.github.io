@@ -28,9 +28,9 @@ genetics PhD student · bioinformatics · server tinkerer · learning in public
 <div class="project-feature-copy">
 <div class="card-badge">featured now</div>
 
-### [Cat Journal](/projects/cat-journal/)
+### [Cat Journal 🐱](/projects/cat-journal/)
 
-一个给研究者和长期脑力工作者准备的私人日志项目，重点放在快速记录、时间线回看和轻量洞察。
+超可爱的薄荷绿日记本！记录今天干了啥、心情咋样，还有会动的小猫咪 ✨
 </div>
 
 <div class="project-feature-actions">
@@ -42,27 +42,21 @@ genetics PhD student · bioinformatics · server tinkerer · learning in public
 <div class="project-grid">
 
 <a class="project-card" href="/projects/cat-journal/">
-<span class="card-badge">research life tool</span>
+<span class="card-badge">超可爱 🐱</span>
 <strong>Cat Journal</strong>
-<span>当前重点项目。私人研究生活日志，适合先快速记下今天，再回头整理节奏。</span>
+<span>薄荷绿配色的私人日记本，有浮动小猫咪！正在做，但已经很萌了。</span>
 </a>
 
 <div class="project-card">
 <span class="card-badge">bioinformatics</span>
-<strong>RNA-seq / WGS pipeline</strong>
-<span>整理中的分析流程项目，后续会逐步补充方法说明、结果展示和可复用脚本。</span>
+<strong>生信分析流程</strong>
+<span>RNA-seq / WGS 常用流程整理，包括脚本、可视化模板和踩坑记录。</span>
 </div>
 
 <div class="project-card">
-<span class="card-badge">AI demo</span>
-<strong>Model experiments</strong>
-<span>一些和日常工作流相关的 AI 小实验，成熟后再拆成独立页面。</span>
-</div>
-
-<div class="project-card">
-<span class="card-badge">open source</span>
-<strong>Useful tools</strong>
-<span>平时学习和踩坑过程中顺手做的小工具，会按主题继续往这里追加。</span>
+<span class="card-badge">learning</span>
+<strong>学习笔记</strong>
+<span>服务器管理、Container、AI 工具应用等学习过程记录。</span>
 </div>
 
 </div>
@@ -71,7 +65,11 @@ genetics PhD student · bioinformatics · server tinkerer · learning in public
 
 ## recent notes
 
-- [[notes/container-docker-singularity|Container 踩坑：Docker vs Singularity]]
+- [[notes/ai-tools-in-research|AI 工具融入科研工作流]]
+- [[notes/bioinformatics-tools-guide|生信工具实用指南]]
+- [[notes/phd-life-tips|直博生存指南]]
+- [[notes/skills-stack|技能栈 & 工具箱]]
+- [[notes/server-cheatsheet|服务器管理速查表]]
 
 → [[notes/|查看全部笔记]]
 
@@ -79,4 +77,4 @@ genetics PhD student · bioinformatics · server tinkerer · learning in public
 
 ## find me
 
-[github](https://github.com/cupcake777) · [email](mailto:your@email.com)
+[github](https://github.com/cupcake777) · [email](mailto:yconglibio@gmail.com)
