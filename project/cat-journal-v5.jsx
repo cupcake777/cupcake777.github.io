@@ -87,6 +87,73 @@ const textLight= "#b0a090";
 const surface  = "rgba(255,255,255,0.88)";
 const border   = "rgba(196,168,130,0.22)";
 
+// ─── Cute Cat Avatar ──────────────────────────────────────────────────────────
+function CuteCat({mood="happy",size=80,onClick}) {
+  const [expr,setExpr]=useState(mood);
+  const [bounce,setBounce]=useState(false);
+
+  const expressions={
+    happy:{eye:"^",mouth:"arc",color:"#f6a623",earTilt:0},
+    excited:{eye:"star",mouth:"wide",color:"#ff9a3c",earTilt:8},
+    calm:{eye:"line",mouth:"smile",color:"#5bc0eb",earTilt:-3},
+    sleepy:{eye:"closed",mouth:"tiny",color:"#a0b4c8",earTilt:-8},
+    curious:{eye:"round",mouth:"o",color:"#9b7ec8",earTilt:12},
+    love:{eye:"heart",mouth:"smile",color:"#ff6b9d",earTilt:5},
+  };
+
+  const current=expressions[expr]||expressions.happy;
+
+  const handleClick=()=>{
+    if(!onClick)return;
+    setBounce(true);
+    const moods=Object.keys(expressions);
+    const next=moods[Math.floor(Math.random()*moods.length)];
+    setExpr(next);
+    setTimeout(()=>setBounce(false),600);
+    onClick?.(next);
+  };
+
+  const Eye=({x,type})=>{
+    if(type==="^")return <path d={`M${x-4},32 Q${x},28 ${x+4},32`} stroke="#5c4033" strokeWidth="2" fill="none" strokeLinecap="round"/>;
+    if(type==="line")return <line x1={x-4} y1="32" x2={x+4} y2="32" stroke="#5c4033" strokeWidth="2" strokeLinecap="round"/>;
+    if(type==="closed")return <path d={`M${x-4},32 Q${x},34 ${x+4},32`} stroke="#5c4033" strokeWidth="2" fill="none" strokeLinecap="round"/>;
+    if(type==="round")return <circle cx={x} cy="32" r="3" fill="#5c4033"/>;
+    if(type==="star")return <path d={`M${x},29 L${x+1},32 L${x+4},32 L${x+2},34 L${x+3},37 L${x},35 L${x-3},37 L${x-2},34 L${x-4},32 L${x-1},32 Z`} fill="#5c4033"/>;
+    if(type==="heart")return <path d={`M${x},35 L${x-3},31 Q${x-4},29 ${x-2},29 Q${x},30 ${x},31 Q${x},30 ${x+2},29 Q${x+4},29 ${x+3},31 Z`} fill="#e87c7c"/>;
+    return null;
+  };
+
+  const Mouth=({type})=>{
+    if(type==="arc")return <path d="M42,42 Q50,46 58,42" stroke="#5c4033" strokeWidth="2" fill="none" strokeLinecap="round"/>;
+    if(type==="smile")return <path d="M42,42 Q50,44 58,42" stroke="#5c4033" strokeWidth="1.5" fill="none" strokeLinecap="round"/>;
+    if(type==="wide")return <path d="M40,42 Q50,48 60,42" stroke="#5c4033" strokeWidth="2" fill="none" strokeLinecap="round"/>;
+    if(type==="tiny")return <line x1="48" y1="42" x2="52" y2="42" stroke="#5c4033" strokeWidth="1.5" strokeLinecap="round"/>;
+    if(type==="o")return <ellipse cx="50" cy="43" rx="3" ry="4" fill="none" stroke="#5c4033" strokeWidth="1.5"/>;
+    return null;
+  };
+
+  return <div onClick={handleClick} style={{display:"inline-block",cursor:onClick?"pointer":"default",animation:bounce?"bounce 0.6s ease":"none",userSelect:"none"}}>
+    <svg width={size} height={size} viewBox="0 0 100 100" style={{filter:"drop-shadow(0 4px 12px rgba(0,0,0,0.08))"}}>
+      <ellipse cx="50" cy="60" rx="32" ry="28" fill={current.color} opacity="0.95"/>
+      <circle cx="50" cy="35" r="28" fill={current.color}/>
+      <path d={`M30,20 L25,8 L35,15 Z`} fill={current.color} transform={`rotate(${current.earTilt} 30 20)`}/>
+      <path d={`M70,20 L75,8 L65,15 Z`} fill={current.color} transform={`rotate(${-current.earTilt} 70 20)`}/>
+      <path d="M28,18 L26,12 L32,16 Z" fill="#fff" opacity="0.6"/>
+      <path d="M72,18 L74,12 L68,16 Z" fill="#fff" opacity="0.6"/>
+      <Eye x={40} type={current.eye}/>
+      <Eye x={60} type={current.eye}/>
+      <Mouth type={current.mouth}/>
+      <line x1="20" y1="35" x2="10" y2="33" stroke="#5c4033" strokeWidth="1" opacity="0.4"/>
+      <line x1="20" y1="38" x2="8" y2="38" stroke="#5c4033" strokeWidth="1" opacity="0.4"/>
+      <line x1="80" y1="35" x2="90" y2="33" stroke="#5c4033" strokeWidth="1" opacity="0.4"/>
+      <line x1="80" y1="38" x2="92" y2="38" stroke="#5c4033" strokeWidth="1" opacity="0.4"/>
+      <path d="M75,70 Q85,75 82,85" stroke={current.color} strokeWidth="6" fill="none" strokeLinecap="round" opacity="0.9"/>
+      <ellipse cx="38" cy="82" rx="6" ry="4" fill={current.color} opacity="0.8"/>
+      <ellipse cx="62" cy="82" rx="6" ry="4" fill={current.color} opacity="0.8"/>
+    </svg>
+  </div>;
+}
+
 // ─── Atoms ────────────────────────────────────────────────────────────────────
 function Dots() {
   return <span style={{display:"inline-flex",gap:3,alignItems:"center",verticalAlign:"middle"}}>
@@ -215,7 +282,7 @@ function Onboarding({onComplete}) {
     { title:"欢迎来到猫猫饲养日志 🐱", sub:"让饲养员先认识一下你~", content:
       <div style={{animation:"popIn .3s ease-out"}}>
         <div style={{textAlign:"center",marginBottom:20}}>
-          <div style={{fontSize:72,animation:"float 3s ease-in-out infinite"}}>🐱</div>
+          <div style={{animation:"float 3s ease-in-out infinite"}}><CuteCat size={90} mood="excited" onClick={()=>{}}/></div>
           <p style={{color:textMid,fontSize:14,fontFamily:"sans-serif",lineHeight:1.7,marginTop:12}}>这是一个专属于你的<strong style={{color:accentDark}}>每日签到 & 研究陪伴</strong>应用。饲养员会关注你的状态、帮你整理研究思路、在你疲惫时鼓励你。</p>
         </div>
         <div style={{display:"grid",gridTemplateColumns:"1fr 1fr",gap:8}}>
@@ -325,7 +392,7 @@ function ProfilePage({profile,onSave,onNav}) {
   return <div style={{maxWidth:560,margin:"0 auto",padding:"20px 16px 90px",animation:"fadeUp .4s ease-out"}}>
     {/* hero */}
     <Card style={{padding:"28px 24px",textAlign:"center",marginBottom:14,background:"linear-gradient(135deg,rgba(255,255,255,0.95),rgba(245,237,228,0.95))"}}>
-      <div style={{fontSize:64,marginBottom:8,animation:"float 4s ease-in-out infinite"}}>{p.avatar}</div>
+      <div style={{marginBottom:8,animation:"float 4s ease-in-out infinite"}}><CuteCat size={80} mood="love" onClick={()=>{}}/></div>
       <div style={{fontFamily:serif,fontSize:20,color:textMain,fontWeight:700}}>{p.name||"未命名小猫"}</div>
       <div style={{fontSize:13,color:textMid,fontFamily:"sans-serif",marginTop:4}}>{p.stage} · {p.field||"研究领域待填写"}</div>
       {p.institution&&<div style={{fontSize:12,color:textLight,fontFamily:"sans-serif",marginTop:3}}>📍 {p.institution}</div>}
@@ -427,7 +494,7 @@ function CheckIn({onComplete,profile}) {
     </div>
     <Card style={{padding:"30px 26px",width:"100%",maxWidth:440}}>
       <div style={{textAlign:"center",marginBottom:22}}>
-        <div style={{fontSize:48,marginBottom:6,animation:"float 3s ease-in-out infinite"}}>{profile?.avatar||"🐱"}</div>
+        <div style={{marginBottom:6,animation:"float 3s ease-in-out infinite"}}><CuteCat size={60} mood="curious"/></div>
         <h2 style={{fontFamily:serif,fontSize:19,color:textMain,margin:0,fontWeight:700}}>{cur.title}</h2>
         <p style={{color:textMid,fontSize:13,margin:"5px 0 0",fontFamily:"sans-serif"}}>{cur.sub}</p>
       </div>
@@ -508,7 +575,7 @@ ${ctx}
       <div style={{fontSize:11,color:textLight,fontFamily:mono}}>{fmt(record.ts)}</div>
     </div>
     <Card style={{padding:"22px 24px",textAlign:"center",marginBottom:14}}>
-      <div style={{fontSize:52,marginBottom:8,animation:"float 3.5s ease-in-out infinite"}}>{record.mood?.emoji||profile?.avatar||"🐱"}</div>
+      <div style={{marginBottom:8,animation:"float 3.5s ease-in-out infinite"}}><CuteCat size={64} mood={record.mood?.label==="开心"?"happy":record.mood?.label==="平静"?"calm":record.mood?.label==="充能"?"excited":record.mood?.label==="疲惫"?"sleepy":"curious"}/></div>
       <div style={{fontFamily:serif,color:textMain,fontSize:18,fontWeight:700,marginBottom:10}}>今日观察日志</div>
       <div style={{display:"flex",flexWrap:"wrap",gap:6,justifyContent:"center"}}>
         <Tag icon={record.mood?.emoji} label={record.mood?.label} color={record.mood?.color||accent}/>
@@ -928,7 +995,9 @@ function Home({records,profile,research,onCheckin,onNav}) {
   return <div style={{maxWidth:560,margin:"0 auto",padding:"28px 16px 90px",animation:"fadeUp .5s ease-out"}}>
     {/* hero */}
     <div style={{textAlign:"center",marginBottom:20}}>
-      <div style={{fontSize:profile?68:60,animation:"float 3.5s ease-in-out infinite",marginBottom:8}}>{profile?.avatar||"🐱"}</div>
+      <div style={{animation:"float 3.5s ease-in-out infinite",marginBottom:8}}>
+        <CuteCat size={profile?88:80} mood="happy" onClick={()=>{}}/>
+      </div>
       <h1 style={{fontFamily:serif,fontSize:22,color:textMain,margin:"0 0 4px",fontWeight:700}}>猫猫饲养日志</h1>
       <p style={{color:textMid,fontSize:14,margin:0,fontFamily:"sans-serif"}}>{greeting}，今天也要被饲养员好好照顾 🔭</p>
       {profile?.field&&<div style={{marginTop:6}}><Tag label={`${profile.stage} · ${profile.field}`} color={accent}/></div>}
@@ -1053,7 +1122,7 @@ export default function App() {
     <div style={{minHeight:"100vh",display:"flex",alignItems:"center",justifyContent:"center",background:"linear-gradient(160deg,#fdf4ec,#f5e6d8,#ede0d4)"}}>
       <style>{CSS}</style>
       <div style={{textAlign:"center"}}>
-        <div style={{fontSize:56,animation:"float 2s ease-in-out infinite"}}>🐱</div>
+        <div style={{animation:"float 2s ease-in-out infinite"}}><CuteCat size={70} mood="sleepy"/></div>
         <div style={{marginTop:14,color:textMid,fontFamily:"sans-serif",fontSize:14,display:"flex",alignItems:"center",gap:6,justifyContent:"center"}}>
           饲养员在准备档案 <Dots/>
         </div>
