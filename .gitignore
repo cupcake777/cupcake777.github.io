@@ -10,6 +10,7 @@ tsconfig.tsbuildinfo
 private/
 .replit
 replit.nix
+project/.superpowers/
 !project/.gitignore
 !project/public/
 !project/public/**
