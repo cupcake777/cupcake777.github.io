@@ -24,30 +24,45 @@ genetics PhD student · bioinformatics · server tinkerer · learning in public
 
 ## projects
 
-<div class="card-grid">
+<div class="project-feature">
+<div class="project-feature-copy">
+<div class="card-badge">featured now</div>
 
-<div class="card">
-<div class="card-badge">bioinformatics</div>
+### [Cat Journal](/projects/cat-journal/)
 
-**pipeline name**
-RNA-seq / WGS 分析流程
-
+一个给研究者和长期脑力工作者准备的私人日志项目，重点放在快速记录、时间线回看和轻量洞察。
 </div>
 
-<div class="card">
-<div class="card-badge">AI demo</div>
-
-**model experiment**
-HuggingFace Space
-
+<div class="project-feature-actions">
+<a class="project-cta" href="/projects/cat-journal/">打开项目</a>
+<p class="project-feature-meta">React + Vite · ongoing</p>
+</div>
 </div>
 
-<div class="card">
-<div class="card-badge">open source</div>
+<div class="project-grid">
 
-**something useful**
-在学习中顺手做的小工具
+<a class="project-card" href="/projects/cat-journal/">
+<span class="card-badge">research life tool</span>
+<strong>Cat Journal</strong>
+<span>当前重点项目。私人研究生活日志，适合先快速记下今天，再回头整理节奏。</span>
+</a>
 
+<div class="project-card">
+<span class="card-badge">bioinformatics</span>
+<strong>RNA-seq / WGS pipeline</strong>
+<span>整理中的分析流程项目，后续会逐步补充方法说明、结果展示和可复用脚本。</span>
+</div>
+
+<div class="project-card">
+<span class="card-badge">AI demo</span>
+<strong>Model experiments</strong>
+<span>一些和日常工作流相关的 AI 小实验，成熟后再拆成独立页面。</span>
+</div>
+
+<div class="project-card">
+<span class="card-badge">open source</span>
+<strong>Useful tools</strong>
+<span>平时学习和踩坑过程中顺手做的小工具，会按主题继续往这里追加。</span>
 </div>
 
 </div>
