@@ -1,6 +1,6 @@
-import { useState, useEffect } from "react"
+import { useEffect, useRef, useState } from "react"
 import { CatAvatar } from "./CatAvatar"
-import { motion, AnimatePresence } from "framer-motion"
+import { AnimatePresence, motion } from "framer-motion"
 
 const MESSAGES = {
   idle: ["喵~ 今天过得怎么样？", "记得休息一下哦", "要不要记录一下现在的状态？"],
@@ -8,32 +8,52 @@ const MESSAGES = {
   welcome: ["欢迎回来！", "喵~ 很高兴见到你", "今天也要加油哦！"],
 }
 
-export function FloatingCat({ onSave, records }) {
+export function FloatingCat({ records }) {
   const [message, setMessage] = useState("")
   const [show, setShow] = useState(false)
-  const [mood, setMood] = useState("calm")
+  const [expression, setExpression] = useState("welcome")
+  const previousCount = useRef(records.length)
+  const MotionDiv = motion.div
+  const currentMood = records[0]?.mood || "calm"
 
   useEffect(() => {
     const timer = setTimeout(() => {
       setShow(true)
+      setExpression("welcome")
       setMessage(MESSAGES.welcome[Math.floor(Math.random() * MESSAGES.welcome.length)])
-      setTimeout(() => setMessage(""), 3000)
+      setTimeout(() => {
+        setMessage("")
+        setExpression(null)
+      }, 3000)
     }, 1000)
     return () => clearTimeout(timer)
   }, [])
 
   useEffect(() => {
-    if (records.length > 0) {
-      setMood(records[0]?.mood?.value || "calm")
-      setMessage(MESSAGES.saved[Math.floor(Math.random() * MESSAGES.saved.length)])
-      setTimeout(() => setMessage(""), 3000)
+    let triggerTimer = null
+    let resetTimer = null
+
+    if (previousCount.current > 0 && records.length > previousCount.current) {
+      triggerTimer = setTimeout(() => {
+        setExpression("saved")
+        setMessage(MESSAGES.saved[Math.floor(Math.random() * MESSAGES.saved.length)])
+      }, 0)
+      resetTimer = setTimeout(() => {
+        setMessage("")
+        setExpression(null)
+      }, 3000)
+    }
+    previousCount.current = records.length
+    return () => {
+      clearTimeout(triggerTimer)
+      clearTimeout(resetTimer)
     }
   }, [records.length])
 
   if (!show) return null
 
   return (
-    <motion.div
+    <MotionDiv
       style={{
         position: "fixed",
         bottom: 120,
@@ -52,10 +72,10 @@ export function FloatingCat({ onSave, records }) {
       whileHover={{ scale: 1.1, transition: { duration: 0.2 } }}
       whileTap={{ scale: 0.95 }}
     >
-      <CatAvatar mood={mood} size={64} />
+      <CatAvatar mood={currentMood} expression={expression} size={64} />
       <AnimatePresence>
         {message && (
-          <motion.div
+          <MotionDiv
             initial={{ opacity: 0, y: 10, scale: 0.85, x: 10 }}
             animate={{ opacity: 1, y: 0, scale: 1, x: 0 }}
             exit={{ opacity: 0, y: -10, scale: 0.85 }}
@@ -88,9 +108,9 @@ export function FloatingCat({ onSave, records }) {
               borderRight: "1px solid rgba(255, 179, 102, 0.2)",
               borderBottom: "1px solid rgba(255, 179, 102, 0.2)",
             }} />
-          </motion.div>
+          </MotionDiv>
         )}
       </AnimatePresence>
-    </motion.div>
+    </MotionDiv>
   )
 }

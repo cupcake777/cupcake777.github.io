@@ -1,26 +1,11 @@
 import { useMemo } from "react"
+import { buildMoodChartData } from "../lib/moodChart"
 import { uiTokens } from "./ui/tokens"
 
-const MOOD_COLORS = {
-  happy: "#FFD93D",
-  calm: "#6BCB77",
-  tired: "#A8DADC",
-  excited: "#FF6B9D",
-}
-
 export function MoodChart({ records, height = 180 }) {
-  const chartData = useMemo(() => {
-    const recent = records.slice(0, 14).reverse()
-    return recent.map((r) => ({
-      label: new Date(r.ts).toLocaleDateString("zh-CN", { month: "numeric", day: "numeric" }),
-      mood: r.mood?.value || "calm",
-      color: MOOD_COLORS[r.mood?.value] || MOOD_COLORS.calm,
-    }))
-  }, [records])
+  const chartData = useMemo(() => buildMoodChartData(records), [records])
 
   if (!chartData.length) return null
-
-  const barWidth = 100 / chartData.length
 
   return (
     <>
@@ -37,7 +22,7 @@ export function MoodChart({ records, height = 180 }) {
               <div
                 style={{
                   width: "100%",
-                  height: `${60 + Math.random() * 40}%`,
+                  height: `${item.heightPercent}%`,
                   background: item.color,
                   borderRadius: "8px 8px 0 0",
                   transition: "all 0.3s ease",

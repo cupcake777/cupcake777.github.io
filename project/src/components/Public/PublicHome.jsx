@@ -12,8 +12,12 @@ import {
   Surface,
 } from "../ui/primitives"
 import { uiTokens } from "../ui/tokens"
-import { MOTION, EASE } from "../ui/motion"
+import { EASE } from "../ui/motionTokens"
 import { motion } from "framer-motion"
+
+const MotionHeader = motion.header
+const MotionAnchor = motion.a
+const MotionDiv = motion.div
 
 const FEATURE_ITEMS = [
   { title: "快速记录", description: "最短路径记下当前状态和下一步。" },
@@ -56,7 +60,7 @@ const demoCardVariants = {
 export function PublicHome({ onStart, onLogin }) {
   return (
     <AppFrame>
-      <motion.header
+      <MotionHeader
         initial="hidden"
         animate="visible"
         variants={headerVariants}
@@ -95,23 +99,23 @@ export function PublicHome({ onStart, onLogin }) {
             }}
           >
             {PUBLIC_NAV_ITEMS.map((item) => (
-              <motion.a
+              <MotionAnchor
                 key={item.key}
                 href={`#${item.key}`}
                 whileHover={{ color: uiTokens.color.accentStrong }}
                 style={{ color: uiTokens.color.textMuted, fontSize: 14 }}
               >
                 {item.label}
-              </motion.a>
+              </MotionAnchor>
             ))}
-            <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+            <MotionDiv whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
               <SecondaryButton onClick={onLogin} style={{ minHeight: 40, paddingInline: 14 }}>
                 已有账户
               </SecondaryButton>
-            </motion.div>
+            </MotionDiv>
           </nav>
         </Container>
-      </motion.header>
+      </MotionHeader>
 
       <main>
         <Container
@@ -124,40 +128,40 @@ export function PublicHome({ onStart, onLogin }) {
             paddingBottom: 48,
           }}
         >
-          <motion.div variants={heroContentVariants} initial="hidden" animate="visible">
-            <motion.div variants={heroItemVariants}>
+          <MotionDiv variants={heroContentVariants} initial="hidden" animate="visible">
+            <MotionDiv variants={heroItemVariants}>
               <SectionEyebrow>// cat journal</SectionEyebrow>
-            </motion.div>
-            <motion.div variants={heroItemVariants}>
+            </MotionDiv>
+            <MotionDiv variants={heroItemVariants}>
               <PageTitle>记录当下，回看轨迹。</PageTitle>
-            </motion.div>
-            <motion.div variants={heroItemVariants}>
+            </MotionDiv>
+            <MotionDiv variants={heroItemVariants}>
               <BodyText style={{ fontSize: 19, maxWidth: 620 }}>
                 为研究者和长期脑力工作者设计的私人日志。快速记录，清晰回看，轻量洞察。
               </BodyText>
-            </motion.div>
-            <motion.div
+            </MotionDiv>
+            <MotionDiv
               variants={heroItemVariants}
               style={{ display: "flex", gap: 12, flexWrap: "wrap" }}
             >
-              <motion.div whileHover={{ scale: 1.02, y: -2 }} whileTap={{ scale: 0.98 }}>
+              <MotionDiv whileHover={{ scale: 1.02, y: -2 }} whileTap={{ scale: 0.98 }}>
                 <PrimaryButton onClick={onStart}>开始使用</PrimaryButton>
-              </motion.div>
-              <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+              </MotionDiv>
+              <MotionDiv whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
                 <SecondaryButton onClick={onLogin}>我已经注册过</SecondaryButton>
-              </motion.div>
-            </motion.div>
-            <motion.div
+              </MotionDiv>
+            </MotionDiv>
+            <MotionDiv
               variants={heroItemVariants}
               style={{ display: "flex", gap: 10, flexWrap: "wrap" }}
             >
               <Badge>Register first</Badge>
               <Badge>Auto session</Badge>
               <Badge tone="muted">Mint workspace</Badge>
-            </motion.div>
-          </motion.div>
+            </MotionDiv>
+          </MotionDiv>
 
-          <motion.div variants={demoCardVariants} initial="hidden" animate="visible">
+          <MotionDiv variants={demoCardVariants} initial="hidden" animate="visible">
             <Surface
               tint
               style={{
@@ -215,11 +219,11 @@ export function PublicHome({ onStart, onLogin }) {
                 </BodyText>
               </div>
             </Surface>
-          </motion.div>
+          </MotionDiv>
         </Container>
 
         <Container id="value" style={{ display: "grid", gap: 20, paddingBottom: 40 }}>
-          <motion.div
+          <MotionDiv
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -230,7 +234,7 @@ export function PublicHome({ onStart, onLogin }) {
             <BodyText style={{ maxWidth: 760 }}>
               无需完整复盘，记下今天的活动、状态和下一步，时间线和洞察自动串联节奏。
             </BodyText>
-          </motion.div>
+          </MotionDiv>
         </Container>
 
         <Container
@@ -243,7 +247,7 @@ export function PublicHome({ onStart, onLogin }) {
           }}
         >
           {FEATURE_ITEMS.map((item, i) => (
-            <motion.div
+            <MotionDiv
               key={item.title}
               variants={cardVariants}
               initial="hidden"
@@ -261,12 +265,12 @@ export function PublicHome({ onStart, onLogin }) {
                   <BodyText>{item.description}</BodyText>
                 </div>
               </Surface>
-            </motion.div>
+            </MotionDiv>
           ))}
         </Container>
 
         <Container id="insights" style={{ paddingBottom: 60 }}>
-          <motion.div
+          <MotionDiv
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -288,11 +292,11 @@ export function PublicHome({ onStart, onLogin }) {
                 </BodyText>
               </div>
             </Surface>
-          </motion.div>
+          </MotionDiv>
         </Container>
 
         <Container id="auth" style={{ paddingBottom: 80 }}>
-          <motion.div
+          <MotionDiv
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -312,12 +316,12 @@ export function PublicHome({ onStart, onLogin }) {
                   <SectionEyebrow>// start</SectionEyebrow>
                   <SectionTitle>注册后设备自动登录。</SectionTitle>
                 </div>
-                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}>
+                <MotionDiv whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.98 }}>
                   <PrimaryButton onClick={onStart}>进入注册</PrimaryButton>
-                </motion.div>
+                </MotionDiv>
               </div>
             </Surface>
-          </motion.div>
+          </MotionDiv>
         </Container>
       </main>
     </AppFrame>

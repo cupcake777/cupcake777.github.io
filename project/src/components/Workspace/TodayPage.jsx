@@ -42,7 +42,7 @@ export function TodayPage({
           }}
         >
           <div style={{ display: "flex", gap: 20, alignItems: "center" }}>
-            <CatAvatar mood={draft.mood?.value || summary.todayRecords[0]?.mood?.value || "calm"} size={100} />
+            <CatAvatar mood={draft.mood || summary.todayRecords[0]?.mood || "calm"} size={100} />
             <div style={{ display: "grid", gap: 8, maxWidth: 640 }}>
               <SectionEyebrow>// today</SectionEyebrow>
               <SectionTitle>你好，{displayName}。</SectionTitle>

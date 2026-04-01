@@ -11,10 +11,13 @@ import {
   Surface,
 } from "../ui/primitives"
 import { uiTokens } from "../ui/tokens"
-import { MOTION, EASE } from "../ui/motion"
+import { EASE } from "../ui/motionTokens"
 import { motion, AnimatePresence } from "framer-motion"
 import { LoginForm } from "./LoginForm"
 import { RegisterForm } from "./RegisterForm"
+
+const MotionDiv = motion.div
+const MotionButton = motion.button
 
 const panelVariants = {
   hidden: { opacity: 0, x: -30 },
@@ -52,7 +55,7 @@ export function AuthPage({ onLogin, onRegister, loading, error, onBack, defaultM
           paddingBlock: 32,
         }}
       >
-        <motion.div variants={panelVariants} initial="hidden" animate="visible">
+        <MotionDiv variants={panelVariants} initial="hidden" animate="visible">
           <Surface
             tint
             style={{
@@ -61,14 +64,14 @@ export function AuthPage({ onLogin, onRegister, loading, error, onBack, defaultM
             }}
           >
             <div style={{ display: "grid", gap: 20 }}>
-              <motion.div
+              <MotionDiv
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.1 }}
               >
                 <SectionEyebrow>// auth</SectionEyebrow>
-              </motion.div>
-              <motion.div
+              </MotionDiv>
+              <MotionDiv
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.15 }}
@@ -76,8 +79,8 @@ export function AuthPage({ onLogin, onRegister, loading, error, onBack, defaultM
                 <PageTitle style={{ fontSize: "clamp(2rem, 4vw, 3.2rem)" }}>
                   注册一次，之后自动进入。
                 </PageTitle>
-              </motion.div>
-              <motion.div
+              </MotionDiv>
+              <MotionDiv
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.2 }}
@@ -85,8 +88,8 @@ export function AuthPage({ onLogin, onRegister, loading, error, onBack, defaultM
                 <BodyText style={{ fontSize: 18 }}>
                   设备会话持久化，无需每次登录。工作台采用克制的薄荷绿配色。
                 </BodyText>
-              </motion.div>
-              <motion.div
+              </MotionDiv>
+              <MotionDiv
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.25 }}
@@ -95,8 +98,8 @@ export function AuthPage({ onLogin, onRegister, loading, error, onBack, defaultM
                 <Badge>Register first</Badge>
                 <Badge>Auto session</Badge>
                 <Badge tone="muted">Manual login after logout</Badge>
-              </motion.div>
-              <motion.div
+              </MotionDiv>
+              <MotionDiv
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.3 }}
@@ -108,9 +111,9 @@ export function AuthPage({ onLogin, onRegister, loading, error, onBack, defaultM
                     <BodyText>记录当下，回看本周。</BodyText>
                   </div>
                 </Surface>
-              </motion.div>
+              </MotionDiv>
               {onBack ? (
-                <motion.button
+                <MotionButton
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.35 }}
@@ -127,13 +130,13 @@ export function AuthPage({ onLogin, onRegister, loading, error, onBack, defaultM
                   }}
                 >
                   返回公开首页
-                </motion.button>
+                </MotionButton>
               ) : null}
             </div>
           </Surface>
-        </motion.div>
+        </MotionDiv>
 
-        <motion.div variants={formVariants} initial="hidden" animate="visible">
+        <MotionDiv variants={formVariants} initial="hidden" animate="visible">
           <Surface
             style={{
               padding: 28,
@@ -142,7 +145,7 @@ export function AuthPage({ onLogin, onRegister, loading, error, onBack, defaultM
           >
             <div style={{ display: "grid", gap: 20 }}>
               <div style={{ display: "grid", gap: 8 }}>
-                <motion.div
+                <MotionDiv
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.2 }}
@@ -150,8 +153,8 @@ export function AuthPage({ onLogin, onRegister, loading, error, onBack, defaultM
                   <SectionEyebrow>
                     {mode === "register" ? "// register" : "// login"}
                   </SectionEyebrow>
-                </motion.div>
-                <motion.div
+                </MotionDiv>
+                <MotionDiv
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.25 }}
@@ -159,11 +162,11 @@ export function AuthPage({ onLogin, onRegister, loading, error, onBack, defaultM
                   <SectionTitle>
                     {mode === "register" ? "Create your space" : "Login to device"}
                   </SectionTitle>
-                </motion.div>
+                </MotionDiv>
               </div>
 
               <div style={{ position: "relative", padding: 4 }}>
-                <motion.div
+                <MotionDiv
                   layout
                   variants={tabIndicatorVariants}
                   initial={false}
@@ -192,7 +195,7 @@ export function AuthPage({ onLogin, onRegister, loading, error, onBack, defaultM
                     { key: "register", label: "注册" },
                     { key: "login", label: "登录" },
                   ].map((item) => (
-                    <motion.button
+                    <MotionButton
                       key={item.key}
                       onClick={() => setMode(item.key)}
                       whileHover={{ scale: 1.02 }}
@@ -210,13 +213,13 @@ export function AuthPage({ onLogin, onRegister, loading, error, onBack, defaultM
                       }}
                     >
                       {item.label}
-                    </motion.button>
+                    </MotionButton>
                   ))}
                 </div>
               </div>
 
               <AnimatePresence mode="wait">
-                <motion.div
+                <MotionDiv
                   key={mode}
                   variants={contentVariants}
                   initial="initial"
@@ -238,11 +241,11 @@ export function AuthPage({ onLogin, onRegister, loading, error, onBack, defaultM
                       error={error}
                     />
                   )}
-                </motion.div>
+                </MotionDiv>
               </AnimatePresence>
             </div>
           </Surface>
-        </motion.div>
+        </MotionDiv>
       </Container>
     </AppFrame>
   )

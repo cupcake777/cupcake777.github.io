@@ -41,6 +41,10 @@ import { CatAvatar } from "../CatAvatar"
 import { FloatingCat } from "../FloatingCat"
 import { motion } from "framer-motion"
 
+const MotionHeader = motion.header
+const MotionNav = motion.nav
+const MotionButton = motion.button
+
 const TAB_ICONS = {
   today: SunMedium,
   timeline: ScrollText,
@@ -514,7 +518,7 @@ export function WorkspaceShell({ user, onLogout }) {
 
   return (
     <div style={{ minHeight: "100dvh", background: uiTokens.color.base, paddingBottom: 92 }}>
-      <motion.header
+      <MotionHeader
         initial={{ y: -20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.3 }}
@@ -541,7 +545,7 @@ export function WorkspaceShell({ user, onLogout }) {
               }}
             >
               <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-                <CatAvatar mood={records[0]?.mood?.value || "calm"} size={50} />
+                <CatAvatar mood={records[0]?.mood || "calm"} size={50} />
                 <div style={{ display: "grid", gap: 4 }}>
                   <strong style={{ fontFamily: uiTokens.font.mono, fontSize: 14 }}>
                     cat journal
@@ -562,7 +566,7 @@ export function WorkspaceShell({ user, onLogout }) {
                   marginLeft: "auto",
                 }}
               >
-                <motion.button
+                <MotionButton
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   onClick={() => setActiveTab("timeline")}
@@ -581,8 +585,8 @@ export function WorkspaceShell({ user, onLogout }) {
                 >
                   <Search size={16} />
                   搜索记录
-                </motion.button>
-                <motion.button
+                </MotionButton>
+                <MotionButton
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   onClick={() => setActiveTab("today")}
@@ -601,9 +605,9 @@ export function WorkspaceShell({ user, onLogout }) {
                 >
                   <Sparkles size={16} />
                   快速新增
-                </motion.button>
+                </MotionButton>
                 <div style={{ position: "relative" }}>
-                  <motion.button
+                  <MotionButton
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     onClick={() => setMenuOpen((open) => !open)}
@@ -618,7 +622,7 @@ export function WorkspaceShell({ user, onLogout }) {
                     }}
                   >
                     <Menu size={18} />
-                  </motion.button>
+                  </MotionButton>
                   {menuOpen ? (
                     <ToolMenu onAction={handleMenuAction} onClose={() => setMenuOpen(false)} />
                   ) : null}
@@ -627,13 +631,13 @@ export function WorkspaceShell({ user, onLogout }) {
             </div>
           </Surface>
         </Container>
-      </motion.header>
+      </MotionHeader>
 
       <main>
         <Container style={{ paddingTop: 24 }}>{renderActivePage()}</Container>
       </main>
 
-      <motion.nav
+      <MotionNav
         initial={{ y: 20, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.3, delay: 0.1 }}
@@ -661,7 +665,7 @@ export function WorkspaceShell({ user, onLogout }) {
             const active = activeTab === item.key
 
             return (
-              <motion.button
+              <MotionButton
                 key={item.key}
                 onClick={() => setActiveTab(item.key)}
                 whileHover={{ scale: 1.05 }}
@@ -684,11 +688,11 @@ export function WorkspaceShell({ user, onLogout }) {
               >
                 <Icon size={18} />
                 <span style={{ fontSize: 12 }}>{item.label}</span>
-              </motion.button>
+              </MotionButton>
             )
           })}
         </Container>
-      </motion.nav>
+      </MotionNav>
 
       {researchOpen ? (
         <ResearchPanel

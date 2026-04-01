@@ -41,7 +41,7 @@ export function InsightsPage({
         <Surface style={{ padding: 22 }}>
           <div style={{ display: "grid", gap: 16 }}>
             <div style={{ display: "flex", alignItems: "center", gap: 16 }}>
-              <CatAvatar mood={records[0]?.mood?.value || "calm"} size={80} />
+              <CatAvatar mood={records[0]?.mood || "calm"} size={80} />
               <div style={{ display: "grid", gap: 6 }}>
                 <SectionEyebrow>// trend</SectionEyebrow>
                 <SectionTitle style={{ fontSize: 24 }}>最近状态分布</SectionTitle>
