@@ -18,11 +18,24 @@ title: "notes"
 - [[notes/batch-effect-battle|批次效应求生记]] — ComBat、RUV-III、limma反复横跳
 - [[notes/qtl-pipeline-guide|QTL分析：从genotype到coloc]] — 一条龙pipeline
 - [[notes/genotype-processing|基因型数据处理流水线]] — VCF到imputation到QC
-- [[notes/apa-ati-methodology|APA与ATI分析方法论]] — 3' UTR动态重塑的量化方法
-- [[notes/cross-ancestry-qtl|跨人群QTL分析]] — 多ancestry group比较的坑和方法
-- [[notes/coloc-fine-mapping|Coloc与Fine-mapping实战]] — SuSiE + coloc的实践经验
-- [[notes/sv-detection|SV检测：多工具合并策略]] — 五个caller取交集
-- [[notes/atac-seq-pipeline|ATAC-seq处理流程]] — Tn5 offset、peak calling、质控指标
+- [[notes/apa-ati-methodology|APA与ATI分析方法论]] — 3' UTR动态重塑的量化
+- [[notes/cross-ancestry-qtl|跨人群QTL分析]] — 多ancestry group比较的坑
+- [[notes/coloc-fine-mapping|Coloc与Fine-mapping实战]] — SuSiE + coloc
+- [[notes/sv-detection|SV检测：多工具合并策略]] — 五caller取交集
+- [[notes/atac-seq-pipeline|ATAC-seq处理流程]] — Tn5 offset、peak calling
+- [[notes/multi-tissue-expression|多组织表达分析]] — 32组织QC与outlier检测
+- [[notes/pattern-recognition-clustering|模式识别与聚类分析]] — NbClust/Mfuzz/maSigPro/DBSCAN/GMM
+
+## Pipeline脚本
+
+- [[notes/qtl-pipeline-scripts|QTL完整pipeline脚本集]] — SLURM作业脚本
+- [[notes/susie-coloc-pipeline|SuSiE-coloc可复用pipeline]] — 完整R脚本
+- [[notes/smr-gene-coloc|SMR分析与基因水平coloc]] — SMR/HEIDI/基因级coloc
+- [[notes/smr-gwas-integration|SMR与GWAS数据整合]] — GWAS数据源与格式转换
+
+## 定量与注释
+
+- [[notes/quantification-annotation|表达定量与注释版本]] — Salmon vs RSEM、GENCODE版本比较
 
 ## 命令速查
 
