@@ -2,21 +2,19 @@
 title: "cc"
 ---
 
-<div class="hero-eyebrow"><!-- hello world --></div>
+<div class="hero-eyebrow"><!----></div>
 
 # cupcake 🧁
 
-生信博士在读，研究脑组织里的UTR动态重塑和替代聚腺苷酸化。服务器折腾爱好者，代码是自学的，所以踩坑记录特别多。
+生信博士在读，研究脑组织UTR动态重塑和APA。代码自学的，踩坑特别多。
 
 > 好记心不如敲键盘
 
 ---
 
-## 现在在做什么
+## 在做什么
 
-在用800+个人脑样本做eQTL/apaQTL分析——从基因型QC到coloc一条龙，跨三个人群（EAS/EUR/AFR）比来比去，试图说服自己结果真的能说点什么东西。
-
-最近还在折腾：容器化和AI工具融入科研工作流。
+800+个人脑样本做eQTL/apaQTL，从genotype QC到coloc一条龙，跨EAS/EUR/AFR三个人群，反复说服自己结果是真的。最近还在折腾container和AI工具融入科研。
 
 ---
 
@@ -26,9 +24,9 @@ title: "cc"
 <div class="project-feature-copy">
 <div class="card-badge">ongoing</div>
 
-### [UTR动态重塑与脑疾病遗传调控](/projects/apa-qtl-brain/)
+### [UTR动态重塑与脑疾病遗传调控](/projects/apa-qtl-brain)
 
-脑组织APA/ATI的QTL研究。800+样本，三个人群，从raw data到coloc全自己搓的pipeline。
+脑组织APA/ATI QTL研究。800+样本，三个人群，raw data到coloc自己搓的pipeline。
 
 </div>
 
@@ -43,13 +41,13 @@ title: "cc"
 <a class="project-card" href="/projects/cat-journal/">
 <span class="card-badge">side project</span>
 <strong>Cat Journal 🐱</strong>
-<span>薄荷绿私人日记本，有浮动小猫咪。因为可爱所以做了。</span>
+<span>薄荷绿私人日记本。因为可爱所以做了。</span>
 </a>
 
 <a class="project-card" href="/notes/">
 <span class="card-badge">笔记</span>
 <strong>踩坑记录</strong>
-<span>生信流程、服务器运维、科研日常。不保证全对，但都是真的坑。</span>
+<span>生信、服务器、科研日常。不保证全对，但都是真的坑。</span>
 </a>
 
 </div>

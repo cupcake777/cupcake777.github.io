@@ -14,3 +14,4 @@ project/.superpowers/
 !project/.gitignore
 !project/public/
 !project/public/**
+artifact.tar
