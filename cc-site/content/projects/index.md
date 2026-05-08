@@ -4,45 +4,40 @@ title: "projects"
 
 # projects
 
-我做过的一些东西 ✨
+做过的和正在做的事情 ✨
 
 ---
 
 ## 正在做
 
+### [UTR动态重塑与脑疾病遗传调控](/projects/apa-qtl-brain/)
+
+脑组织APA/ATI的QTL研究。800+样本，三个人群，从genotype QC到coloc全自己搓的pipeline。
+
+**核心问题**：3' UTR的长度变化（APA/ATI）在不同人群中是否有遗传调控？这些调控信号能否解释脑疾病的遗传风险？
+
+**技术栈**：R · Bash · Snakemake · TensorQTL/coloc
+
+[→ 查看详情](/projects/apa-qtl-brain/)
+
+---
+
 ### [Cat Journal 🐱](/projects/cat-journal/)
 
-超可爱的薄荷绿日记本！记录今天的状态、心情和下一步。
+薄荷绿私人日记本，有浮动小猫咪。因为觉得可爱所以就做了。
 
-**技术栈**：React + Vite + Supabase  
+**技术栈**：React + Vite + Supabase
+
 **状态**：开发中，但已经很萌了
 
 [→ 查看详情](/projects/cat-journal/)
 
 ---
 
-## 计划中
+## 做过但还没整理的
 
-### RNA-seq / WGS pipeline
+- **基因型处理pipeline** — 从VCF到imputation到post-QC的全自动Snakemake流程
+- **批次效应校正** — ComBat/RUV-III/limma反复横跳的心路历程
+- **SV检测** — 五款工具跑一轮再SURVIVOR合并的暴力美学
 
-整理我常用的生信分析流程，包括：
-- 标准化的分析脚本
-- 可视化模板
-- 踩坑记录
-
-**状态**：整理中
-
----
-
-### AI 工具实验
-
-探索 AI 在科研中的应用：
-- 文献快速总结
-- 代码调试助手
-- 自动化报告生成
-
-**状态**：实验阶段
-
----
-
-*更多项目持续更新中……*
+*整理好了会放上来……大概*

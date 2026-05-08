@@ -4,30 +4,21 @@ title: "tags"
 
 # tags
 
-按标签浏览笔记 🏷️
+按标签浏览 🏷️
 
 ---
 
-## 分类
-
 ### 🧬 bioinformatics
-生信工具、分析流程、数据处理
+生信流程、QTL分析、数据处理、踩坑记录
+
+### 🧪 research
+研究项目、方法论、论文相关
 
 ### 🖥️ server
 服务器运维、Linux、环境配置
 
-### 📦 container
-Docker、Singularity、容器化
-
-### 🤖 AI
-AI 工具使用、提示词、工作流优化
-
 ### 🎓 phd-life
-博士生活、时间管理、心得体会
+直博日常、心态、碎碎念
 
-### 📚 tutorial
-从零开始的教程、速查表
-
----
-
-→ [[notes/|查看全部笔记]]
+### 🔧 tutorial
+从零开始的操作指南

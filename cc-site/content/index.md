@@ -2,23 +2,21 @@
 title: "cc"
 ---
 
-<div class="hero-eyebrow">// hello world</div>
+<div class="hero-eyebrow"><!-- hello world --></div>
 
-# hi, i'm cupcake 🧁
+# cupcake 🧁
 
-genetics PhD student · bioinformatics · server tinkerer · learning in public
+生信博士在读，研究脑组织里的UTR动态重塑和替代聚腺苷酸化。服务器折腾爱好者，代码是自学的，所以踩坑记录特别多。
 
-> <span class="hero-tagline">好记心不如敲键盘</span>
+> 好记心不如敲键盘
 
 ---
 
-## about me
+## 现在在做什么
 
-本科生科出身，直博中，专业是遗传学 / 生信方向。代码是半路出家学的，所以这里会有很多"踩坑记录"。
+在用800+个人脑样本做eQTL/apaQTL分析——从基因型QC到coloc一条龙，跨三个人群（EAS/EUR/AFR）比来比去，试图说服自己结果真的能说点什么东西。
 
-喜欢折腾服务器，最近在学 container，对 AI 工具很感兴趣，正在尝试把它们融入科研工作流。
-
-薄荷巧克力爱好者 🍃🍫
+最近还在折腾：容器化和AI工具融入科研工作流。
 
 ---
 
@@ -26,52 +24,46 @@ genetics PhD student · bioinformatics · server tinkerer · learning in public
 
 <div class="project-feature">
 <div class="project-feature-copy">
-<div class="card-badge">featured now</div>
+<div class="card-badge">ongoing</div>
 
-### [Cat Journal 🐱](/projects/cat-journal/)
+### [UTR动态重塑与脑疾病遗传调控](/projects/apa-qtl-brain/)
 
-超可爱的薄荷绿日记本！记录今天干了啥、心情咋样，还有会动的小猫咪 ✨
+脑组织APA/ATI的QTL研究。800+样本，三个人群，从raw data到coloc全自己搓的pipeline。
+
 </div>
 
 <div class="project-feature-actions">
-<a class="project-cta" href="/projects/cat-journal/">打开项目</a>
-<p class="project-feature-meta">React + Vite · ongoing</p>
+<a class="project-cta" href="/projects/apa-qtl-brain/">查看详情</a>
+<p class="project-feature-meta">Genetics · R · Shell</p>
 </div>
 </div>
 
 <div class="project-grid">
 
 <a class="project-card" href="/projects/cat-journal/">
-<span class="card-badge">超可爱 🐱</span>
-<strong>Cat Journal</strong>
-<span>薄荷绿配色的私人日记本，有浮动小猫咪！正在做，但已经很萌了。</span>
+<span class="card-badge">side project</span>
+<strong>Cat Journal 🐱</strong>
+<span>薄荷绿私人日记本，有浮动小猫咪。因为可爱所以做了。</span>
 </a>
 
-<div class="project-card">
-<span class="card-badge">bioinformatics</span>
-<strong>生信分析流程</strong>
-<span>RNA-seq / WGS 常用流程整理，包括脚本、可视化模板和踩坑记录。</span>
-</div>
-
-<div class="project-card">
-<span class="card-badge">learning</span>
-<strong>学习笔记</strong>
-<span>服务器管理、Container、AI 工具应用等学习过程记录。</span>
-</div>
+<a class="project-card" href="/notes/">
+<span class="card-badge">笔记</span>
+<strong>踩坑记录</strong>
+<span>生信流程、服务器运维、科研日常。不保证全对，但都是真的坑。</span>
+</a>
 
 </div>
 
 ---
 
-## recent notes
+## 最近写的
 
-- [[notes/ai-tools-in-research|AI 工具融入科研工作流]]
-- [[notes/bioinformatics-tools-guide|生信工具实用指南]]
-- [[notes/phd-life-tips|直博生存指南]]
-- [[notes/skills-stack|技能栈 & 工具箱]]
-- [[notes/server-cheatsheet|服务器管理速查表]]
+- [[notes/batch-effect-battle|批次效应求生记]]
+- [[notes/preprocessing-comparison|五种标准化方法对比实录]]
+- [[notes/qtl-pipeline-guide|QTL分析：从genotype到coloc]]
+- [[notes/survival-guide|直博碎碎念]]
 
-→ [[notes/|查看全部笔记]]
+→ [[notes/|全部笔记]]
 
 ---
 

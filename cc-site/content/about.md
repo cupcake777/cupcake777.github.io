@@ -2,59 +2,52 @@
 title: "about"
 ---
 
-# about cc
+# about
 
 🧁 cupcake，可以叫我 cc
 
----
-
-## 现在在做什么
-
-- 🎓 遗传学方向直博在读
-- 🧬 主要做生信 / genetics 相关研究
-- 🖥️ 学习服务器运维，最近在搞 container
-- 🤖 探索 AI 工具在科研中的应用
-- 🐱 做一个超可爱的薄荷绿日记本（Cat Journal）
+生科本科，跳到遗传学直博。代码全是自学的——所以踩过的坑比别人多，这里就是坑的博物馆。
 
 ---
 
-## 背景
+## 研究方向
 
-本科生命科学出身，不是 CS 科班，代码都是自学的。  
-踩了很多坑，也在慢慢进步。  
+人脑全生命周期的**替代聚腺苷酸化（APA）**和3' UTR动态重塑，以及它们跟神经精神疾病的遗传关联。具体来说：
 
-这个网站主要是记录学习过程，写给未来的自己，也写给和我一样在摸索的人。
+- 脑组织APA/ATI的QTL分析（eQTL、apaQTL、sQTL）
+- 跨人群比较（EAS、EUR、AFR）
+- 从raw genotype到coloc一条龙全自己搓
 
-**为什么叫 cupcake？**  
-因为喜欢薄荷巧克力 cupcake 🍃🍫（是的，就这么简单）
-
----
-
-## 这个网站有什么
-
-- **notes** — 学习笔记，踩坑记录，教程
-- **projects** — 做过的东西（主要是 Cat Journal）
-- **about** — 就是这里了
+用800+个人脑样本，三个人群，反复告诉自己"I believe this is real"。
 
 ---
 
-## 技能树
+## 技术栈
 
-- **编程**：Python（主力）、R、Bash、JavaScript（学习中）
-- **生信**：RNA-seq、WGS、差异分析、可视化
-- **工具**：Git、Docker、Singularity、Slurm
-- **正在学**：前端开发、Container、CI/CD
+不是简历，只是我真的天天在用的东西：
+
+**写代码** — Python（pandas/numpy/matplotlib为主，最近在碰FastAPI）、R（ggplot2/DESeq2/Seurat是老朋友了）、Bash（服务器日常）
+
+**生信** — RNA-seq全流程（STAR、featureCounts、DESeq2）、WGS处理（GATK那一套）、eQTL mapping（FastQTL/TensorQTL）
+
+**折腾** — Docker、Singularity、Slurm、Git，最近在搞AI工具融入科研工作流
+
+**前端** — 会一点React，做了个猫日记本
 
 ---
 
-## 联系我
+## 为什么叫 cupcake
 
-- GitHub: [cupcake777](https://github.com/cupcake777)
-- Email: [yconglibio@gmail.com](mailto:yconglibio@gmail.com)
+因为喜欢薄荷巧克力cupcake 🍃🍫
 
-欢迎交流！尤其是：
-- 生信分析相关问题
-- 服务器/容器化踩坑经验
-- AI 工具在科研中的应用
-- 或者只是想聊聊薄荷巧克力 🍃🍫
+是的，就这么简单。
 
+---
+
+## 这个站
+
+踩坑记录为主，夹带一些碎碎念。不保证全对，但保证都是真的踩过的坑。
+
+如果你也在做生信/遗传学/折腾服务器，欢迎交流：
+
+[GitHub](https://github.com/cupcake777) · [Email](mailto:yconglibio@gmail.com)
